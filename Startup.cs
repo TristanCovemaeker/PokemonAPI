@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PokemonAPI.Configuration;
+using PokemonAPI.Data;
 
 namespace PokemonAPI
 {
@@ -28,6 +29,7 @@ namespace PokemonAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
+            services.AddDbContext<PokemonContext>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
