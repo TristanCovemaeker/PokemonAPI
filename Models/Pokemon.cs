@@ -7,6 +7,7 @@ namespace PokemonAPI.Models
     {
         public Guid PokemonId { get; set; }
         public List<string> Abilities { get; set; }
+        public Guid AgainstId { get; set; }
         public Against Against { get; set; }
         public int Attack { get; set; }
         public int BaseEggSteps { get; set; }
@@ -25,7 +26,8 @@ namespace PokemonAPI.Models
         public int SpAttack { get; set; }
         public int SpDefense { get; set; }
         public int Speed { get; set; }
-        public Type Type { get; set; }
+        public Guid PokemonTypeId { get; set; }
+        public PokemonType PokemonType { get; set; }
         public float WeightKg { get; set; }
         public int Generation { get; set; }
         public bool IsLegendary { get; set; }

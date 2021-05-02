@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\OneDrive - Hogeschool West-Vlaanderen\\Howest\\S4\\Backend Development\\backend_project\\PokemonAPI\\PokemonAPI.csproj": {}
+    "E:\\OneDrive - Hogeschool West-Vlaanderen\\Howest\\S4\\Backend Development\\PokemonAPI\\PokemonAPI.csproj": {}
   },
   "projects": {
-    "E:\\OneDrive - Hogeschool West-Vlaanderen\\Howest\\S4\\Backend Development\\backend_project\\PokemonAPI\\PokemonAPI.csproj": {
+    "E:\\OneDrive - Hogeschool West-Vlaanderen\\Howest\\S4\\Backend Development\\PokemonAPI\\PokemonAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\OneDrive - Hogeschool West-Vlaanderen\\Howest\\S4\\Backend Development\\backend_project\\PokemonAPI\\PokemonAPI.csproj",
+        "projectUniqueName": "E:\\OneDrive - Hogeschool West-Vlaanderen\\Howest\\S4\\Backend Development\\PokemonAPI\\PokemonAPI.csproj",
         "projectName": "PokemonAPI",
-        "projectPath": "E:\\OneDrive - Hogeschool West-Vlaanderen\\Howest\\S4\\Backend Development\\backend_project\\PokemonAPI\\PokemonAPI.csproj",
+        "projectPath": "E:\\OneDrive - Hogeschool West-Vlaanderen\\Howest\\S4\\Backend Development\\PokemonAPI\\PokemonAPI.csproj",
         "packagesPath": "C:\\Users\\trist\\.nuget\\packages\\",
-        "outputPath": "E:\\OneDrive - Hogeschool West-Vlaanderen\\Howest\\S4\\Backend Development\\backend_project\\PokemonAPI\\obj\\",
+        "outputPath": "E:\\OneDrive - Hogeschool West-Vlaanderen\\Howest\\S4\\Backend Development\\PokemonAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "E:\\Microsoft\\Xamarin\\NuGet\\"
@@ -44,6 +44,16 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
