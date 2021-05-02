@@ -54,7 +54,67 @@ namespace PokemonAPI.Data
                 },
                 new PokeType(){
                     Id = Guid.NewGuid(),
+                    Name = "Dragon"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Electric"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Fairy"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Fight"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
                     Name = "Fire"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Flying"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Ghost"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Grass"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Ground"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Ice"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Normal"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Poison"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Psychic"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Rock"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Steel"
+                },
+                new PokeType(){
+                    Id = Guid.NewGuid(),
+                    Name = "Water"
                 }
             );
 
