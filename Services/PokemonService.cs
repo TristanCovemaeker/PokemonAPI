@@ -10,7 +10,7 @@ namespace PokemonAPI.Services
     {
         Task<Pokemon> AddPokemon(Pokemon pokemon);
         Task<List<Ability>> GetAbilities();
-        Task<List<Pokemon>> GetPokemons();
+        Task<List<Pokemon>> GetPokemon();
         Task<List<PokeType>> GetPokeTypes();
     }
 
@@ -38,7 +38,7 @@ namespace PokemonAPI.Services
         {
             return await _abilityRepository.GetAbilities();
         }
-        public async Task<List<Pokemon>> GetPokemons()
+        public async Task<List<Pokemon>> GetPokemon()
         {
             return await _pokemonRepository.GetPokemon();
         }

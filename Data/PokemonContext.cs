@@ -14,8 +14,7 @@ namespace PokemonAPI.Data
         DbSet<Pokemon> Pokemon { get; set; }
         DbSet<Ability> Ability { get; set; }
         DbSet<PokeType> PokeType { get; set; }
-        DbSet<AbilityPokemon> AbilityPokemon { get; set; }
-        DbSet<PokeTypePokemon> PokeTypePokemon { get; set; }
+
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
@@ -25,8 +24,7 @@ namespace PokemonAPI.Data
         public DbSet<Pokemon> Pokemon { get; set; }
         public DbSet<Ability> Ability { get; set; }
         public DbSet<PokeType> PokeType { get; set; }
-        public DbSet<AbilityPokemon> AbilityPokemon { get; set; }
-        public DbSet<PokeTypePokemon> PokeTypePokemon { get; set; }
+
         private ConnectionStrings _connectionstrings;
 
         public PokemonContext(DbContextOptions<PokemonContext> options, IOptions<ConnectionStrings> connectionstrings)
@@ -57,6 +55,14 @@ namespace PokemonAPI.Data
                 new PokeType(){
                     Id = Guid.NewGuid(),
                     Name = "Fire"
+                }
+            );
+
+            modelBuilder.Entity<Ability>().HasData
+            (
+                new Ability(){
+                    Id = Guid.NewGuid(),
+                    Name = "Levitate"
                 }
             );
 
