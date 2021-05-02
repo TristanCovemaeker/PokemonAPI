@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokemonAPI.Data;
 
 namespace PokemonAPI.Migrations
 {
     [DbContext(typeof(PokemonContext))]
-    partial class PokemonContextModelSnapshot : ModelSnapshot
+    [Migration("20210502173930_1")]
+    partial class _1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,13 +33,6 @@ namespace PokemonAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ability");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("bb417cc9-14aa-4811-8729-1848063aa42c"),
-                            Name = "Levitate"
-                        });
                 });
 
             modelBuilder.Entity("PokemonAPI.Models.PokeType", b =>
@@ -56,17 +51,17 @@ namespace PokemonAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0354ced6-3921-4d92-9ec0-9108ea3be2c5"),
+                            Id = new Guid("0bec55ee-9543-4ddd-a3d4-387d88a8da2e"),
                             Name = "Bug"
                         },
                         new
                         {
-                            Id = new Guid("1de659a5-6f31-4cc1-bbf6-7c8c1b704ab5"),
+                            Id = new Guid("6ab47786-771e-423f-9d06-f380be8ee1fe"),
                             Name = "Dark"
                         },
                         new
                         {
-                            Id = new Guid("6785295f-64ce-449c-ae88-70c340af920d"),
+                            Id = new Guid("60ad7c7c-f8f9-40c2-ba93-4a64f135d44a"),
                             Name = "Fire"
                         });
                 });

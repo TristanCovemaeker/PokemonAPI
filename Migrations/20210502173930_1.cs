@@ -32,25 +32,6 @@ namespace PokemonAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AbilityPokemon",
-                columns: table => new
-                {
-                    AbilityPokemonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PokemonIdId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AbilityPokemon", x => x.AbilityPokemonId);
-                    table.ForeignKey(
-                        name: "FK_AbilityPokemon_Ability_PokemonIdId",
-                        column: x => x.PokemonIdId,
-                        principalTable: "Ability",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Pokemon",
                 columns: table => new
                 {
@@ -93,6 +74,7 @@ namespace PokemonAPI.Migrations
                     WeightKg = table.Column<float>(type: "real", nullable: false),
                     Generation = table.Column<int>(type: "int", nullable: false),
                     IsLegendary = table.Column<bool>(type: "bit", nullable: false),
+                    PokeTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AbilityId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -104,26 +86,8 @@ namespace PokemonAPI.Migrations
                         principalTable: "Ability",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PokeTypePokemon",
-                columns: table => new
-                {
-                    PokemonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PokeTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PokeTypePokemon", x => new { x.PokemonId, x.PokeTypeId });
                     table.ForeignKey(
-                        name: "FK_PokeTypePokemon_Pokemon_PokemonId",
-                        column: x => x.PokemonId,
-                        principalTable: "Pokemon",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PokeTypePokemon_PokeType_PokeTypeId",
+                        name: "FK_Pokemon_PokeType_PokeTypeId",
                         column: x => x.PokeTypeId,
                         principalTable: "PokeType",
                         principalColumn: "Id",
@@ -133,22 +97,17 @@ namespace PokemonAPI.Migrations
             migrationBuilder.InsertData(
                 table: "PokeType",
                 columns: new[] { "Id", "Name" },
-                values: new object[,]
-                {
-                    { new Guid("d92439b1-867a-41ba-a19b-41f169662960"), "Bug" },
-                    { new Guid("e5348acd-2ca1-4697-a3f7-2daa82a4eb35"), "Dark" },
-                    { new Guid("9ada388c-956b-45ad-9f6f-a4e1d735120f"), "Fire" }
-                });
+                values: new object[] { new Guid("0bec55ee-9543-4ddd-a3d4-387d88a8da2e"), "Bug" });
 
             migrationBuilder.InsertData(
-                table: "Pokemon",
-                columns: new[] { "Id", "AbilityId", "AgainstBug", "AgainstDark", "AgainstDragon", "AgainstElectric", "AgainstFairy", "AgainstFight", "AgainstFire", "AgainstFlying", "AgainstGhost", "AgainstGrass", "AgainstGround", "AgainstIce", "AgainstNormal", "AgainstPoison", "AgainstPsychic", "AgainstRock", "AgainstSteel", "AgainstWater", "Attack", "BaseEggSteps", "BaseHappiness", "BaseTotal", "CaptureRate", "Classification", "Defense", "ExperienceGrowth", "Generation", "HeightM", "Hp", "IsLegendary", "JapaneseName", "Name", "PercentageMale", "PokedexNumber", "SpAttack", "SpDefense", "Speed", "WeightKg" },
-                values: new object[] { new Guid("a3d978ea-3b28-4fad-af3b-ab301f478d5e"), null, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0, 0, 0, 0, 0, null, 0, 0, 0, 0f, 0, false, null, "Bug", 0f, 0, 0, 0, 0, 0f });
+                table: "PokeType",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { new Guid("6ab47786-771e-423f-9d06-f380be8ee1fe"), "Dark" });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_AbilityPokemon_PokemonIdId",
-                table: "AbilityPokemon",
-                column: "PokemonIdId");
+            migrationBuilder.InsertData(
+                table: "PokeType",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { new Guid("60ad7c7c-f8f9-40c2-ba93-4a64f135d44a"), "Fire" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pokemon_AbilityId",
@@ -156,27 +115,21 @@ namespace PokemonAPI.Migrations
                 column: "AbilityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PokeTypePokemon_PokeTypeId",
-                table: "PokeTypePokemon",
+                name: "IX_Pokemon_PokeTypeId",
+                table: "Pokemon",
                 column: "PokeTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AbilityPokemon");
-
-            migrationBuilder.DropTable(
-                name: "PokeTypePokemon");
-
-            migrationBuilder.DropTable(
                 name: "Pokemon");
 
             migrationBuilder.DropTable(
-                name: "PokeType");
+                name: "Ability");
 
             migrationBuilder.DropTable(
-                name: "Ability");
+                name: "PokeType");
         }
     }
 }

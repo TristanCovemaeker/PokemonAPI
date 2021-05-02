@@ -10,8 +10,8 @@ using PokemonAPI.Data;
 namespace PokemonAPI.Migrations
 {
     [DbContext(typeof(PokemonContext))]
-    [Migration("20210502154013_1")]
-    partial class _1
+    [Migration("20210502175027_2")]
+    partial class _2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,25 +33,13 @@ namespace PokemonAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ability");
-                });
 
-            modelBuilder.Entity("PokemonAPI.Models.AbilityPokemon", b =>
-                {
-                    b.Property<Guid>("AbilityPokemonId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("PokemonIdId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("AbilityPokemonId");
-
-                    b.HasIndex("PokemonIdId");
-
-                    b.ToTable("AbilityPokemon");
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("bb417cc9-14aa-4811-8729-1848063aa42c"),
+                            Name = "Levitate"
+                        });
                 });
 
             modelBuilder.Entity("PokemonAPI.Models.PokeType", b =>
@@ -70,34 +58,19 @@ namespace PokemonAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d92439b1-867a-41ba-a19b-41f169662960"),
+                            Id = new Guid("0354ced6-3921-4d92-9ec0-9108ea3be2c5"),
                             Name = "Bug"
                         },
                         new
                         {
-                            Id = new Guid("e5348acd-2ca1-4697-a3f7-2daa82a4eb35"),
+                            Id = new Guid("1de659a5-6f31-4cc1-bbf6-7c8c1b704ab5"),
                             Name = "Dark"
                         },
                         new
                         {
-                            Id = new Guid("9ada388c-956b-45ad-9f6f-a4e1d735120f"),
+                            Id = new Guid("6785295f-64ce-449c-ae88-70c340af920d"),
                             Name = "Fire"
                         });
-                });
-
-            modelBuilder.Entity("PokemonAPI.Models.PokeTypePokemon", b =>
-                {
-                    b.Property<Guid>("PokemonId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PokeTypeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("PokemonId", "PokeTypeId");
-
-                    b.HasIndex("PokeTypeId");
-
-                    b.ToTable("PokeTypePokemon");
                 });
 
             modelBuilder.Entity("PokemonAPI.Models.Pokemon", b =>
@@ -208,6 +181,9 @@ namespace PokemonAPI.Migrations
                     b.Property<float>("PercentageMale")
                         .HasColumnType("real");
 
+                    b.Property<Guid>("PokeTypeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("PokedexNumber")
                         .HasColumnType("int");
 
@@ -227,75 +203,9 @@ namespace PokemonAPI.Migrations
 
                     b.HasIndex("AbilityId");
 
+                    b.HasIndex("PokeTypeId");
+
                     b.ToTable("Pokemon");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("a3d978ea-3b28-4fad-af3b-ab301f478d5e"),
-                            AgainstBug = 0f,
-                            AgainstDark = 0f,
-                            AgainstDragon = 0f,
-                            AgainstElectric = 0f,
-                            AgainstFairy = 0f,
-                            AgainstFight = 0f,
-                            AgainstFire = 0f,
-                            AgainstFlying = 0f,
-                            AgainstGhost = 0f,
-                            AgainstGrass = 0f,
-                            AgainstGround = 0f,
-                            AgainstIce = 0f,
-                            AgainstNormal = 0f,
-                            AgainstPoison = 0f,
-                            AgainstPsychic = 0f,
-                            AgainstRock = 0f,
-                            AgainstSteel = 0f,
-                            AgainstWater = 0f,
-                            Attack = 0,
-                            BaseEggSteps = 0,
-                            BaseHappiness = 0,
-                            BaseTotal = 0,
-                            CaptureRate = 0,
-                            Defense = 0,
-                            ExperienceGrowth = 0,
-                            Generation = 0,
-                            HeightM = 0f,
-                            Hp = 0,
-                            IsLegendary = false,
-                            Name = "Bug",
-                            PercentageMale = 0f,
-                            PokedexNumber = 0,
-                            SpAttack = 0,
-                            SpDefense = 0,
-                            Speed = 0,
-                            WeightKg = 0f
-                        });
-                });
-
-            modelBuilder.Entity("PokemonAPI.Models.AbilityPokemon", b =>
-                {
-                    b.HasOne("PokemonAPI.Models.Ability", "PokemonId")
-                        .WithMany()
-                        .HasForeignKey("PokemonIdId");
-
-                    b.Navigation("PokemonId");
-                });
-
-            modelBuilder.Entity("PokemonAPI.Models.PokeTypePokemon", b =>
-                {
-                    b.HasOne("PokemonAPI.Models.PokeType", "PokeType")
-                        .WithMany("PokeTypePokemons")
-                        .HasForeignKey("PokeTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PokemonAPI.Models.Pokemon", null)
-                        .WithMany("PokeTypePokemons")
-                        .HasForeignKey("PokemonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PokeType");
                 });
 
             modelBuilder.Entity("PokemonAPI.Models.Pokemon", b =>
@@ -303,6 +213,14 @@ namespace PokemonAPI.Migrations
                     b.HasOne("PokemonAPI.Models.Ability", null)
                         .WithMany("Pokemon")
                         .HasForeignKey("AbilityId");
+
+                    b.HasOne("PokemonAPI.Models.PokeType", "PokeType")
+                        .WithMany("Pokemon")
+                        .HasForeignKey("PokeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PokeType");
                 });
 
             modelBuilder.Entity("PokemonAPI.Models.Ability", b =>
@@ -312,12 +230,7 @@ namespace PokemonAPI.Migrations
 
             modelBuilder.Entity("PokemonAPI.Models.PokeType", b =>
                 {
-                    b.Navigation("PokeTypePokemons");
-                });
-
-            modelBuilder.Entity("PokemonAPI.Models.Pokemon", b =>
-                {
-                    b.Navigation("PokeTypePokemons");
+                    b.Navigation("Pokemon");
                 });
 #pragma warning restore 612, 618
         }
